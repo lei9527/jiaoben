@@ -1,6 +1,6 @@
 # jiaoben
 
-wget https://github.com/zhucaidan/BestTrace-Linux/raw/master/besttrace
+wget https://github.com/lei9527/jiaoben/blob/main/besttrace
 
 chmod +x besttrace
 
