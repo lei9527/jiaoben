@@ -23,7 +23,7 @@ curl -fsL https://ilemonra.in/LemonBenchIntl | bash -s fast
 
 #三网Speedtest测速
 function 3speed(){
-bash <(curl -Lso- https://raw.githubusercontent.com/BlueSkyXN/SpeedTestCN/main/superspeed.sh)
+bash <(curl -fSsLo- https://git.io/superspeed.sh)
 }
 
 #Memorytest 内存压力测试
@@ -38,11 +38,7 @@ gcc -l stdc++ memtester.cpp
 
 #Route-trace 回城路由追踪
 function rtsh(){
-wget -O "/root/jcnf.sh" "https://raw.githubusercontent.com/Netflixxp/jcnfbesttrace/main/jcnf.sh" --no-check-certificate -T 30 -t 5 -d
-chmod +x "/root/jcnf.sh"
-chmod 777 "/root/jcnf.sh"
-yellow "下载完成,之后可执行 bash /root/jcnf.sh 再次运行"
-bash "/root/jcnf.sh"
+bash -c "$(curl http://nexttrace-io-leomoe-api-a0.shop/nt_install_v1.sh)"
 }
 
 #Speedtest for Linux·下载
@@ -63,25 +59,7 @@ echo
 
 #nf.sh 流媒体解锁测试
 function nf(){
-        #安装JQ
-	if [ -e "/etc/redhat-release" ];then
-	yum install epel-release -y -q > /dev/null;
-	yum install jq -y -q > /dev/null;
-	elif [[ $(cat /etc/os-release | grep '^ID=') =~ ubuntu ]] || [[ $(cat /etc/os-release | grep '^ID=') =~ debian ]];then
-	apt-get update -y > /dev/null;
-	apt-get install jq > /dev/null;
-	else 
-	echo -e "${Font_Red}请手动安装jq${Font_Suffix}";
-	exit;
-	fi
-        jq -V > /dev/null 2>&1;
-        if [ $? -ne 0 ];then
-	echo -e "${Font_Red}请手动安装jq${Font_Suffix}";
-	exit;
-        fi
-bash <(curl -sSL https://raw.githubusercontent.com/Netflixxp/NF/main/nf.sh)
-}
-
+bash <(curl -L -s https://raw.githubusercontent.com/lmc999/RegionRestrictionCheck/main/check.sh)
 #检测/诊断Youtube地域
 function tubecheck(){
 wget -O "/root/tubecheck" "https://cdn.jsdelivr.net/gh/sjlleo/TubeCheck/CDN/tubecheck_1.0beta_linux_amd64" --no-check-certificate -T 30 -t 5 -d
@@ -241,7 +219,6 @@ function start_menu(){
     green " 5. Speedtest测速"
     green " 6. 获取本机IP"
     green " 7. 流媒体解锁测试"
-	green " 8. 检测/诊断Youtube地域"
 	
     yellow " =======服务器功能============================== "
     green " 11. Linux换源脚本"
@@ -249,9 +226,9 @@ function start_menu(){
     green " 13. 虚拟内存SWAP一键安装 "
     green " 14. 一键安装BBR "
     green " 16. 宝塔中文官方一键安装 "
-  	green " 17. 宝塔英文官方一键安装（无需验证） "
-  	green " 18. 宝塔面板免验证版 "
-  	green " 19. Cloudflare WARP 一键配置脚本 "
+    green " 17. 宝塔英文官方一键安装（无需验证） "
+    green " 18. 宝塔面板免验证版 "
+    green " 19. Cloudflare WARP 一键配置脚本 "
 
     yellow " =======科学上网工具============================ "
     green " 21. iptables一键中转 "
@@ -288,10 +265,7 @@ function start_menu(){
 	    7 )
            nf
 	;;
-		8 )
-           tubecheck
-	;;
-		11 )
+            11 )
            cssh
 	;;
 		12 )
